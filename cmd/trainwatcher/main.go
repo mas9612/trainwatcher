@@ -3,12 +3,17 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/mas9612/trainwatcher"
 )
 
 func main() {
-	webhookURL := "https://hooks.slack.com/services/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"
+	webhookURL, ok := os.LookupEnv("SLACK_INCOMING_URL")
+	if !ok {
+		log.Fatalln("SLACK_INCOMING_URL not found")
+	}
+
 	watcher, err := trainwatcher.NewWatcher(webhookURL)
 	if err != nil {
 		log.Fatalln(err)
