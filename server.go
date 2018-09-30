@@ -18,19 +18,17 @@ var (
 
 // Watcher watches train delay status and post to Slack if status changes
 type Watcher struct {
-	webhookURL string
-	mux        *mux.Router
+	mux *mux.Router
 }
 
 // NewWatcher returns new Watcher
-func NewWatcher(webhook string) (Watcher, error) {
+func NewWatcher() (Watcher, error) {
 	if err := parseConfig(); err != nil {
 		return Watcher{}, err
 	}
 
 	watcher := Watcher{
-		webhookURL: webhook,
-		mux:        newRouter(),
+		mux: newRouter(),
 	}
 	return watcher, nil
 }

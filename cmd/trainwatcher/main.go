@@ -14,7 +14,7 @@ func main() {
 		log.Fatalln("SLACK_INCOMING_URL not found")
 	}
 
-	watcher, err := trainwatcher.NewWatcher(webhookURL)
+	watcher, err := trainwatcher.NewWatcher()
 	if err != nil {
 		log.Fatalln(err)
 	}
